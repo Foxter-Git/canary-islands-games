@@ -1,0 +1,51 @@
+---
+// BaseLayout.astro
+// Layout base para todas las páginas de la web
+
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "CANARY ISLANDS GAMES - New International Hub for Videogames",
+  description = "CANARY ISLANDS GAMES is the department of the Canary Islands Government in charge of promoting our videogames industry."
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-gray-50 text-gray-900">
+    <!-- Navbar Component -->
+    <slot name="navbar" />
+    
+    <!-- Main Content -->
+    <main>
+      <slot />
+    </main>
+    
+    <!-- Footer Component -->
+    <slot name="footer" />
+  </body>
+</html>
+
+<style is:global>
+  html {
+    font-family: system-ui, sans-serif;
+  }
+  
+  body {
+    margin: 0;
+  }
+</style>
+

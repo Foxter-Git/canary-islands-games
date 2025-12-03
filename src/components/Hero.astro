@@ -1,0 +1,46 @@
+---
+// Hero.astro
+// Componente hero principal para la página de inicio
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaUrl?: string;
+}
+
+const {
+  title = "Meet the New International Hub for Videogames",
+  subtitle = "CANARY ISLANDS GAMES is the department of the Canary Islands Government in charge of promoting our videogames industry. We provide info and resources about our tax incentives, studios, and everything you may need to develop your next game with/from our region.",
+  ctaText = "Apply / Sign up",
+  ctaUrl = "FORM_URL" // TODO_FORM_URL: Reemplazar por la URL real del formulario
+} = Astro.props;
+---
+
+<section class="relative min-h-[600px] flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500 text-white">
+  <!-- IMG_BG_HERO: Aquí irá una imagen de fondo a pantalla completa relacionada con videojuegos y Canarias -->
+  <!-- Ejemplo de implementación con imagen de fondo:
+    <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('/images/hero-bg.jpg');"></div>
+  -->
+  
+  <div class="absolute inset-0 bg-black opacity-20"></div>
+  
+  <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h1 class="text-4xl md:text-6xl font-bold mb-6">
+      {title}
+    </h1>
+    <p class="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
+      {subtitle}
+    </p>
+    
+    <!-- TODO_FORM_URL: Reemplazar FORM_URL por la URL real del formulario de inscripción -->
+    <a 
+      href={ctaUrl}
+      class="inline-block bg-white text-blue-700 font-bold py-4 px-8 rounded-lg text-lg hover:bg-blue-50 transition-colors shadow-lg"
+      aria-label="Apply or sign up for Canary Islands Games"
+    >
+      {ctaText}
+    </a>
+  </div>
+</section>
+

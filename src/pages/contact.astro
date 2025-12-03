@@ -1,0 +1,86 @@
+---
+// contact.astro
+// Página de contacto y soporte
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navbar from '@/components/Navbar.astro';
+import Footer from '@/components/Footer.astro';
+import Section from '@/components/Section.astro';
+---
+
+<BaseLayout 
+  title="Contact - CANARY ISLANDS GAMES"
+  description="Get in touch with CANARY ISLANDS GAMES for support and information"
+>
+  <Navbar slot="navbar" />
+  
+  <Section 
+    title="Contact & Support"
+    subtitle="We're here to help you succeed"
+    backgroundColor="white"
+  >
+    <div class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div>
+          <h3 class="text-2xl font-bold mb-4">Get in Touch</h3>
+          <p class="text-gray-700 mb-4">
+            Have questions about tax incentives, the ecosystem, or how to get started? 
+            Our team is ready to provide you with the information and support you need.
+          </p>
+          <p class="text-gray-700">
+            Whether you're an established studio looking to expand or a new developer 
+            considering the Canary Islands, we're here to help.
+          </p>
+        </div>
+        
+        <div class="bg-blue-50 rounded-lg p-6">
+          <h4 class="text-xl font-semibold mb-4">Quick Actions</h4>
+          <ul class="space-y-3">
+            <li>
+              <!-- TODO_FORM_URL: Reemplazar FORM_URL por la URL real del formulario de inscripción -->
+              <a 
+                href="FORM_URL" 
+                class="text-blue-600 hover:text-blue-800 font-medium"
+              >
+                → Apply for Tax Incentives
+              </a>
+            </li>
+            <li>
+              <a 
+                href="/tax-incentives" 
+                class="text-blue-600 hover:text-blue-800 font-medium"
+              >
+                → Learn about Tax Incentives
+              </a>
+            </li>
+            <li>
+              <a 
+                href="/studios" 
+                class="text-blue-600 hover:text-blue-800 font-medium"
+              >
+                → Explore Studios & Ecosystem
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="bg-gray-50 rounded-lg p-8 text-center">
+        <h3 class="text-2xl font-bold mb-4">Ready to Get Started?</h3>
+        <p class="text-gray-700 mb-6">
+          Join the growing community of game developers in the Canary Islands.
+        </p>
+        <!-- TODO_FORM_URL: Reemplazar FORM_URL por la URL real del formulario de inscripción -->
+        <a 
+          href="FORM_URL" 
+          class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg text-lg transition-colors"
+        >
+          Apply Now
+        </a>
+      </div>
+    </div>
+  </Section>
+  
+  <Footer slot="footer" />
+</BaseLayout>
+

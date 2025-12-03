@@ -1,0 +1,74 @@
+---
+// studios.astro
+// Página de listado de estudios y ecosistema
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navbar from '@/components/Navbar.astro';
+import Footer from '@/components/Footer.astro';
+import Section from '@/components/Section.astro';
+
+// TODO: Cuando tengas Sanity configurado, descomenta y usa:
+// import { getStudios } from '@/lib/cms/queries';
+// const studios = await getStudios();
+
+// Datos de ejemplo (reemplazar con datos de Sanity)
+const studios = [
+  { name: "Studio 1", description: "Indie game developer", logo: "/images/studio1.jpg" },
+  { name: "Studio 2", description: "AAA game studio", logo: "/images/studio2.jpg" },
+  { name: "Studio 3", description: "Mobile games specialist", logo: "/images/studio3.jpg" },
+];
+---
+
+<BaseLayout 
+  title="Studios & Ecosystem - CANARY ISLANDS GAMES"
+  description="Discover the game development studios and ecosystem in the Canary Islands"
+>
+  <Navbar slot="navbar" />
+  
+  <Section 
+    title="Game Studios & Ecosystem"
+    subtitle="A vibrant community of creative professionals"
+    backgroundColor="white"
+  >
+    <div class="mb-12">
+      <p class="text-lg text-gray-700 max-w-3xl mx-auto text-center">
+        The Canary Islands are home to a diverse and growing ecosystem of game development 
+        studios. From indie developers creating innovative experiences to established companies 
+        working on major titles, our region offers a dynamic environment for game development.
+      </p>
+    </div>
+    
+    <!-- Grid de estudios -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {studios.map((studio) => (
+        <div class="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <!-- IMG_STUDIO_LOGO: Logo del estudio -->
+          <!-- Ejemplo: <img src={studio.logo} alt={studio.name} class="w-full h-48 object-cover" /> -->
+          <div class="bg-gray-200 h-48 flex items-center justify-center">
+            <p class="text-gray-400">IMG_STUDIO_LOGO: {studio.name}</p>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2">{studio.name}</h3>
+            <p class="text-gray-600">{studio.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <div class="mt-12 text-center">
+      <p class="text-gray-700 mb-4">
+        Are you a studio interested in joining our ecosystem?
+      </p>
+      <!-- TODO_FORM_URL: Reemplazar FORM_URL por la URL real del formulario de inscripción -->
+      <a 
+        href="FORM_URL" 
+        class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors"
+      >
+        Join Our Ecosystem
+      </a>
+    </div>
+  </Section>
+  
+  <Footer slot="footer" />
+</BaseLayout>
+

@@ -1,0 +1,24 @@
+{
+  "name": "canary-islands-games",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "sanity": "sanity"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.0",
+    "@sanity/client": "^6.15.0",
+    "@sanity/image-url": "^1.0.2",
+    "astro": "^5.16.3",
+    "tailwindcss": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  }
+}

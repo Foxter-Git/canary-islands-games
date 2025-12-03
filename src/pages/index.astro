@@ -1,0 +1,72 @@
+---
+// index.astro
+// Página principal simplificada de CANARY ISLANDS GAMES
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getHomeContent } from '@/lib/cms/queries';
+import { urlFor } from '@/lib/cms/sanityClient';
+
+let homeContent;
+try {
+  homeContent = await getHomeContent();
+} catch (error) {
+  // Valores por defecto si no hay contenido en Sanity
+  homeContent = {
+    backgroundImage: null,
+    attendeeFormUrl: '#',
+    developerFormUrl: '#',
+  };
+}
+
+// Generar URLs de imagen optimizadas para diferentes tamaños
+const backgroundImageUrlMobile = homeContent.backgroundImage 
+  ? urlFor(homeContent.backgroundImage).width(768).height(1024).url()
+  : null;
+const backgroundImageUrlTablet = homeContent.backgroundImage 
+  ? urlFor(homeContent.backgroundImage).width(1024).height(768).url()
+  : null;
+const backgroundImageUrlDesktop = homeContent.backgroundImage 
+  ? urlFor(homeContent.backgroundImage).width(1920).height(1080).url()
+  : null;
+const backgroundImageUrl = backgroundImageUrlDesktop;
+---
+
+<BaseLayout 
+  title="CANARY ISLANDS GAMES - New International Hub for Videogames"
+  description="CANARY ISLANDS GAMES is the department of the Canary Islands Government in charge of promoting our videogames industry."
+>
+  <div 
+    class="min-h-screen flex flex-col items-center justify-end relative responsive-background"
+    style={backgroundImageUrl ? `
+      --bg-mobile: url('${backgroundImageUrlMobile || backgroundImageUrl}');
+      --bg-tablet: url('${backgroundImageUrlTablet || backgroundImageUrl}');
+      --bg-desktop: url('${backgroundImageUrl}');
+    ` : 'background: linear-gradient(to bottom, #1e40af, #3b82f6);'}
+  >
+    <!-- Overlay oscuro opcional para mejorar legibilidad de los botones -->
+    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+    
+    <!-- Botones en la parte inferior -->
+    <div class="relative z-10 w-full pb-6 sm:pb-8 md:pb-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-stretch sm:items-center">
+        <!-- Botón de inscripción para asistentes -->
+        <a 
+          href={homeContent.attendeeFormUrl || '#'}
+          class="glass-neon-button text-center"
+          aria-label="Inscripción para asistentes"
+        >
+          ASISTENTES
+        </a>
+        
+        <!-- Botón de inscripción para desarrolladores -->
+        <a 
+          href={homeContent.developerFormUrl || '#'}
+          class="glass-neon-button text-center"
+          aria-label="Inscripción para desarrolladores"
+        >
+          DESARROLLADORES
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

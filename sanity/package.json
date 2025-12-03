@@ -1,0 +1,24 @@
+{
+  "name": "canary-islands-games-sanity",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "desk": "sanity desk"
+  },
+  "dependencies": {
+    "@sanity/vision": "^4.19.0",
+    "dotenv": "^17.2.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "sanity": "^4.19.0",
+    "styled-components": "^6.1.19"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0"
+  }
+}
