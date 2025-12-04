@@ -48,7 +48,7 @@ const topImageUrl = topImageUrlDesktop;
 // Generar URLs de imagen centrada optimizadas para diferentes tamaños (responsive)
 // Usando fit('max') para respetar la relación de aspecto original (1010x749px)
 const centerImageUrlMobile = homeContent.centerImage 
-  ? urlFor(homeContent.centerImage).width(400).fit('max').url()
+  ? urlFor(homeContent.centerImage).width(1010).fit('max').url()
   : null;
 const centerImageUrlTablet = homeContent.centerImage 
   ? urlFor(homeContent.centerImage).width(600).fit('max').url()
