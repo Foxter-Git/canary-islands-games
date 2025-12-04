@@ -35,20 +35,20 @@
   color: white;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-weight: 600;
-  font-size: 0.75rem; /* Base para móvil */
-  letter-spacing: 0.05em; /* Más compacto en móvil */
+  font-size: 0.65rem; /* Más pequeño en móvil */
+  letter-spacing: 0.03em; /* Más compacto en móvil */
   text-transform: none;
   text-shadow: 
     0 0 8px rgba(255, 233, 0, 0.3),
     0 0 4px rgba(255, 233, 0, 0.15);
   
-  /* Padding responsive */
-  padding: 0.875rem 1.5rem; /* Más compacto en móvil */
+  /* Padding responsive - más pequeño en móvil */
+  padding: 0.625rem 1rem; /* Más compacto en móvil */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   
-  /* Ancho responsive */
-  width: 100%;
-  max-width: 100%;
+  /* Ancho responsive - más pequeño en móvil */
+  width: auto;
+  max-width: 70%;
   
   /* Asegurar que el texto no se corte */
   white-space: nowrap;

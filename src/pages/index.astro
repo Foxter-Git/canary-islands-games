@@ -77,7 +77,7 @@ const centerImageUrl = centerImageUrlDesktop;
     <!-- Contenedor principal con imagen centrada y botones abajo -->
     <div class="relative z-10 w-full min-h-screen flex flex-col items-center justify-between overflow-visible">
       <!-- Imágenes centradas vertical y horizontalmente -->
-      <div class="flex-1 flex flex-col items-center justify-center py-6 sm:py-10 md:py-12 px-4 w-full overflow-visible gap-4 sm:gap-6 md:gap-8">
+      <div class="flex-1 flex flex-col items-center justify-center py-6 sm:py-10 md:py-12 px-4 w-full overflow-visible gap-8 sm:gap-6 md:gap-8">
         <!-- Imagen superior -->
         {topImageUrl && (
           <div class="flex items-center justify-center w-full overflow-visible">
@@ -87,7 +87,7 @@ const centerImageUrl = centerImageUrlDesktop;
               <img
                 src={topImageUrlMobile || topImageUrl}
                 alt="Canary Islands Games"
-                class="drop-shadow-2xl w-auto h-auto max-w-[50vw] max-h-[15vh] object-contain mx-auto"
+                class="drop-shadow-2xl w-auto h-auto max-w-[85vw] sm:max-w-[50vw] max-h-[20vh] sm:max-h-[15vh] object-contain mx-auto"
               />
             </picture>
           </div>
@@ -102,7 +102,7 @@ const centerImageUrl = centerImageUrlDesktop;
               <img
                 src={centerImageUrlMobile || centerImageUrl}
                 alt="Canary Islands Games"
-                class="drop-shadow-2xl w-auto h-auto max-w-[70vw] max-h-[55vh] object-contain mx-auto"
+                class="drop-shadow-2xl w-auto h-auto max-w-[95vw] sm:max-w-[70vw] max-h-[70vh] sm:max-h-[55vh] object-contain mx-auto"
               />
             </picture>
           </div>
@@ -110,7 +110,7 @@ const centerImageUrl = centerImageUrlDesktop;
       </div>
       
       <!-- Botón en la parte inferior -->
-      <div class="w-full pb-6 sm:pb-8 md:pb-12 px-4 sm:px-6 lg:px-8">
+      <div class="w-full pb-2 sm:pb-8 md:pb-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto flex justify-center">
           <!-- Botón de inscripción -->
           <a 
