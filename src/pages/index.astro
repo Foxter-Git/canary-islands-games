@@ -35,7 +35,7 @@ const backgroundImageUrl = backgroundImageUrlDesktop;
 // Generar URLs de imagen superior optimizadas para diferentes tamaños (responsive)
 // Usando fit('max') para respetar la relación de aspecto original
 const topImageUrlMobile = homeContent.topImage 
-  ? urlFor(homeContent.topImage).width(400).fit('max').url()
+  ? urlFor(homeContent.topImage).width(1010).fit('max').url()
   : null;
 const topImageUrlTablet = homeContent.topImage 
   ? urlFor(homeContent.topImage).width(600).fit('max').url()
@@ -110,7 +110,7 @@ const centerImageUrl = centerImageUrlDesktop;
       </div>
       
       <!-- Botón en la parte inferior -->
-      <div class="w-full pb-2 sm:pb-8 md:pb-12 px-4 sm:px-6 lg:px-8">
+      <div class="w-full pb-1 sm:pb-8 md:pb-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto flex justify-center">
           <!-- Botón de inscripción -->
           <a 
