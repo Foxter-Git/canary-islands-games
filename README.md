@@ -58,3 +58,6 @@ canary-islands-games/
 
 Ver `GUIA_PASO_A_PASO.md` para instrucciones detalladas de configuración.
 
+---
+
+**Proyecto Foxter**
