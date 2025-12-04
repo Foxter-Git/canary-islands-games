@@ -19,6 +19,24 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'topImage',
+      title: 'Top Image',
+      type: 'image',
+      description: 'Imagen superior centrada (encima de la imagen principal)',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
+      name: 'centerImage',
+      title: 'Center Image',
+      type: 'image',
+      description: 'Imagen centrada sobre el fondo',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
       name: 'attendeeFormUrl',
       title: 'Attendee Form URL',
       type: 'url',

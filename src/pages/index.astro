@@ -13,6 +13,8 @@ try {
   // Valores por defecto si no hay contenido en Sanity
   homeContent = {
     backgroundImage: null,
+    topImage: null,
+    centerImage: null,
     attendeeFormUrl: '#',
     developerFormUrl: '#',
   };
@@ -29,6 +31,32 @@ const backgroundImageUrlDesktop = homeContent.backgroundImage
   ? urlFor(homeContent.backgroundImage).width(1920).height(1080).url()
   : null;
 const backgroundImageUrl = backgroundImageUrlDesktop;
+
+// Generar URLs de imagen superior optimizadas para diferentes tamaños (responsive)
+// Usando fit('max') para respetar la relación de aspecto original
+const topImageUrlMobile = homeContent.topImage 
+  ? urlFor(homeContent.topImage).width(400).fit('max').url()
+  : null;
+const topImageUrlTablet = homeContent.topImage 
+  ? urlFor(homeContent.topImage).width(600).fit('max').url()
+  : null;
+const topImageUrlDesktop = homeContent.topImage 
+  ? urlFor(homeContent.topImage).width(1010).fit('max').url()
+  : null;
+const topImageUrl = topImageUrlDesktop;
+
+// Generar URLs de imagen centrada optimizadas para diferentes tamaños (responsive)
+// Usando fit('max') para respetar la relación de aspecto original (1010x749px)
+const centerImageUrlMobile = homeContent.centerImage 
+  ? urlFor(homeContent.centerImage).width(400).fit('max').url()
+  : null;
+const centerImageUrlTablet = homeContent.centerImage 
+  ? urlFor(homeContent.centerImage).width(600).fit('max').url()
+  : null;
+const centerImageUrlDesktop = homeContent.centerImage 
+  ? urlFor(homeContent.centerImage).width(1010).fit('max').url()
+  : null;
+const centerImageUrl = centerImageUrlDesktop;
 ---
 
 <BaseLayout 
@@ -36,36 +64,63 @@ const backgroundImageUrl = backgroundImageUrlDesktop;
   description="CANARY ISLANDS GAMES is the department of the Canary Islands Government in charge of promoting our videogames industry."
 >
   <div 
-    class="min-h-screen flex flex-col items-center justify-end relative responsive-background"
+    class="min-h-screen flex flex-col items-center justify-between relative responsive-background"
     style={backgroundImageUrl ? `
       --bg-mobile: url('${backgroundImageUrlMobile || backgroundImageUrl}');
       --bg-tablet: url('${backgroundImageUrlTablet || backgroundImageUrl}');
       --bg-desktop: url('${backgroundImageUrl}');
     ` : 'background: linear-gradient(to bottom, #1e40af, #3b82f6);'}
   >
-    <!-- Overlay oscuro opcional para mejorar legibilidad de los botones -->
+    <!-- Overlay oscuro opcional para mejorar legibilidad -->
     <div class="absolute inset-0 bg-black bg-opacity-20"></div>
     
-    <!-- Botones en la parte inferior -->
-    <div class="relative z-10 w-full pb-6 sm:pb-8 md:pb-12 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-stretch sm:items-center">
-        <!-- Botón de inscripción para asistentes -->
-        <a 
-          href={homeContent.attendeeFormUrl || '#'}
-          class="glass-neon-button text-center"
-          aria-label="Inscripción para asistentes"
-        >
-          ASISTENTES
-        </a>
+    <!-- Contenedor principal con imagen centrada y botones abajo -->
+    <div class="relative z-10 w-full min-h-screen flex flex-col items-center justify-between overflow-visible">
+      <!-- Imágenes centradas vertical y horizontalmente -->
+      <div class="flex-1 flex flex-col items-center justify-center py-6 sm:py-10 md:py-12 px-4 w-full overflow-visible gap-4 sm:gap-6 md:gap-8">
+        <!-- Imagen superior -->
+        {topImageUrl && (
+          <div class="flex items-center justify-center w-full overflow-visible">
+            <picture class="flex justify-center w-full">
+              <source media="(min-width: 1024px)" srcset={topImageUrlDesktop || topImageUrl} />
+              <source media="(min-width: 640px)" srcset={topImageUrlTablet || topImageUrl} />
+              <img
+                src={topImageUrlMobile || topImageUrl}
+                alt="Canary Islands Games"
+                class="drop-shadow-2xl w-auto h-auto max-w-[50vw] max-h-[15vh] object-contain mx-auto"
+              />
+            </picture>
+          </div>
+        )}
         
-        <!-- Botón de inscripción para desarrolladores -->
-        <a 
-          href={homeContent.developerFormUrl || '#'}
-          class="glass-neon-button text-center"
-          aria-label="Inscripción para desarrolladores"
-        >
-          DESARROLLADORES
-        </a>
+        <!-- Imagen principal centrada -->
+        {centerImageUrl && (
+          <div class="flex items-center justify-center w-full overflow-visible">
+            <picture class="flex justify-center w-full">
+              <source media="(min-width: 1024px)" srcset={centerImageUrlDesktop || centerImageUrl} />
+              <source media="(min-width: 640px)" srcset={centerImageUrlTablet || centerImageUrl} />
+              <img
+                src={centerImageUrlMobile || centerImageUrl}
+                alt="Canary Islands Games"
+                class="drop-shadow-2xl w-auto h-auto max-w-[70vw] max-h-[55vh] object-contain mx-auto"
+              />
+            </picture>
+          </div>
+        )}
+      </div>
+      
+      <!-- Botón en la parte inferior -->
+      <div class="w-full pb-6 sm:pb-8 md:pb-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto flex justify-center">
+          <!-- Botón de inscripción -->
+          <a 
+            href={homeContent.attendeeFormUrl || '#'}
+            class="glass-neon-button text-center"
+            aria-label="Inscripción"
+          >
+            Inscripción
+          </a>
+        </div>
       </div>
     </div>
   </div>

@@ -24,6 +24,8 @@ export interface Slug {
 export interface HomeContent {
   _id: string;
   backgroundImage?: SanityImage;
+  topImage?: SanityImage;
+  centerImage?: SanityImage;
   attendeeFormUrl?: string;
   developerFormUrl?: string;
 }

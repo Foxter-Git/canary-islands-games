@@ -11,6 +11,8 @@ export async function getHomeContent(): Promise<HomeContent> {
   const query = `*[_type == "home"][0]{
     _id,
     backgroundImage,
+    topImage,
+    centerImage,
     attendeeFormUrl,
     developerFormUrl
   }`;
