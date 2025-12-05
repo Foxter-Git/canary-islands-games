@@ -149,6 +149,19 @@ const mesaRedonda2Url = mesaRedonda2UrlDesktop;
             Inscripción
           </a>
           
+          <!-- Indicador de scroll (solo desktop) -->
+          <div id="scroll-indicator" class="hidden lg:flex flex-col items-center justify-center mt-4 transition-opacity duration-300">
+            <svg 
+              class="w-6 h-6 text-white animate-bounce drop-shadow-lg" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
+          
           <!-- Intro del evento -->
           {homeContent.eventIntro && (
             <div class="text-center text-white max-w-2xl mx-auto px-4 mt-8 sm:mt-12 md:mt-16">
@@ -258,3 +271,33 @@ const mesaRedonda2Url = mesaRedonda2UrlDesktop;
     </div>
   </div>
 </BaseLayout>
+
+<script>
+  // Ocultar flecha de scroll cuando el usuario hace scroll
+  document.addEventListener('DOMContentLoaded', () => {
+    const scrollIndicator = document.getElementById('scroll-indicator');
+    if (!scrollIndicator) return;
+
+    let lastScrollTop = 0;
+    const scrollThreshold = 100; // Píxeles de scroll antes de ocultar
+
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (scrollTop > scrollThreshold) {
+        scrollIndicator.style.opacity = '0';
+        scrollIndicator.style.pointerEvents = 'none';
+      } else {
+        scrollIndicator.style.opacity = '1';
+        scrollIndicator.style.pointerEvents = 'auto';
+      }
+      
+      lastScrollTop = scrollTop;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Verificar estado inicial
+    handleScroll();
+  });
+</script>
