@@ -58,6 +58,19 @@ canary-islands-games/
 
 Ver `GUIA_PASO_A_PASO.md` para instrucciones detalladas de configuración.
 
+## Gestión de Contenido
+
+El contenido del sitio se gestiona a través de Sanity CMS. Para realizar cambios de descripción, imágenes y otros contenidos:
+
+1. Accede a Sanity Studio ejecutando `npm run dev` en la carpeta `sanity/`
+2. Edita el documento "Home Page" para modificar:
+   - Descripción del evento (Event Intro)
+   - Horario (Schedule)
+   - Imágenes (Background, Top, Center, Mesas Redondas)
+   - URLs de formularios
+
+Los cambios se reflejarán automáticamente en el sitio web.
+
 ---
 
 **Proyecto Foxter sl.**
