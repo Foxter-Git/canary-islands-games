@@ -15,7 +15,10 @@ try {
     backgroundImage: null,
     topImage: null,
     centerImage: null,
-    eventIntro: null,
+    eventIntroShort: null,
+    eventCard1: null,
+    eventCard2: null,
+    eventCard3: null,
     schedule: [],
     mesaRedonda1Image: null,
     mesaRedonda2Image: null,
@@ -160,15 +163,70 @@ const mesaRedonda2Url = mesaRedonda2UrlDesktop;
             >
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
-          </div>
-          
-          <!-- Intro del evento -->
-          {homeContent.eventIntro && (
-            <div class="text-center text-white max-w-2xl mx-auto px-4 mt-8 sm:mt-12 md:mt-16">
-              <p class="text-sm sm:text-base md:text-lg leading-relaxed drop-shadow-lg whitespace-pre-line">
-                {homeContent.eventIntro}
-        </p>
       </div>
+      
+          <!-- Intro del evento y tarjetas informativas -->
+          {(homeContent.eventIntroShort || homeContent.eventCard1 || homeContent.eventCard2 || homeContent.eventCard3) && (
+            <div class="w-full max-w-5xl mx-auto px-4 mt-8 sm:mt-12 md:mt-16">
+              {/* Párrafo corto centrado */}
+              {homeContent.eventIntroShort && (
+                <div class="text-center text-white max-w-2xl mx-auto mb-8 sm:mb-12">
+                  <p class="text-sm sm:text-base md:text-lg leading-relaxed drop-shadow-lg whitespace-pre-line">
+                    {homeContent.eventIntroShort}
+                  </p>
+                </div>
+              )}
+              
+              {/* Grid de tarjetas */}
+              {(homeContent.eventCard1 || homeContent.eventCard2 || homeContent.eventCard3) && (
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-5xl mx-auto mt-8">
+                  {homeContent.eventCard1 && (
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/20 rounded-2xl p-6">
+                      {homeContent.eventCard1.title && (
+                        <h3 class="text-[#FFE900] text-lg sm:text-xl font-bold mb-3 drop-shadow-[0_0_4px_rgba(255,233,0,0.5)]">
+                          {homeContent.eventCard1.title}
+                        </h3>
+                      )}
+                      {homeContent.eventCard1.description && (
+                        <p class="text-white/90 text-sm sm:text-base leading-relaxed whitespace-pre-line">
+                          {homeContent.eventCard1.description}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                  
+                  {homeContent.eventCard2 && (
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/20 rounded-2xl p-6">
+                      {homeContent.eventCard2.title && (
+                        <h3 class="text-[#FFE900] text-lg sm:text-xl font-bold mb-3 drop-shadow-[0_0_4px_rgba(255,233,0,0.5)]">
+                          {homeContent.eventCard2.title}
+                        </h3>
+                      )}
+                      {homeContent.eventCard2.description && (
+                        <p class="text-white/90 text-sm sm:text-base leading-relaxed whitespace-pre-line">
+                          {homeContent.eventCard2.description}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                  
+                  {homeContent.eventCard3 && (
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/20 rounded-2xl p-6">
+                      {homeContent.eventCard3.title && (
+                        <h3 class="text-[#FFE900] text-lg sm:text-xl font-bold mb-3 drop-shadow-[0_0_4px_rgba(255,233,0,0.5)]">
+                          {homeContent.eventCard3.title}
+                        </h3>
+                      )}
+                      {homeContent.eventCard3.description && (
+                        <p class="text-white/90 text-sm sm:text-base leading-relaxed whitespace-pre-line">
+                          {homeContent.eventCard3.description}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
           )}
           
           <!-- Timeline de horario -->
@@ -226,8 +284,8 @@ const mesaRedonda2Url = mesaRedonda2UrlDesktop;
                     </div>
                   );
                 })}
-              </div>
-            </div>
+      </div>
+    </div>
           )}
           
           <!-- Imagen de Mesa Redonda 1 -->

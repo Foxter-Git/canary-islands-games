@@ -13,7 +13,19 @@ export async function getHomeContent(): Promise<HomeContent> {
     backgroundImage,
     topImage,
     centerImage,
-    eventIntro,
+    eventIntroShort,
+    eventCard1{
+      title,
+      description
+    },
+    eventCard2{
+      title,
+      description
+    },
+    eventCard3{
+      title,
+      description
+    },
     schedule[]{
       _key,
       time,

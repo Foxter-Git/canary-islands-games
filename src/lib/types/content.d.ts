@@ -30,6 +30,14 @@ export interface ScheduleItem {
 }
 
 /**
+ * Tarjeta informativa del evento
+ */
+export interface EventCard {
+  title?: string;
+  description?: string;
+}
+
+/**
  * Contenido de la página de inicio
  */
 export interface HomeContent {
@@ -37,7 +45,10 @@ export interface HomeContent {
   backgroundImage?: SanityImage;
   topImage?: SanityImage;
   centerImage?: SanityImage;
-  eventIntro?: string;
+  eventIntroShort?: string;
+  eventCard1?: EventCard;
+  eventCard2?: EventCard;
+  eventCard3?: EventCard;
   schedule?: ScheduleItem[];
   mesaRedonda1Image?: SanityImage;
   mesaRedonda2Image?: SanityImage;
