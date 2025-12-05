@@ -60,4 +60,4 @@ Ver `GUIA_PASO_A_PASO.md` para instrucciones detalladas de configuración.
 
 ---
 
-**Proyecto Foxter sl**
+**Proyecto Foxter sl.**
