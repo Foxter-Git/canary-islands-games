@@ -15,6 +15,10 @@ try {
     backgroundImage: null,
     topImage: null,
     centerImage: null,
+    eventIntro: null,
+    schedule: [],
+    mesaRedonda1Image: null,
+    mesaRedonda2Image: null,
     attendeeFormUrl: '#',
     developerFormUrl: '#',
   };
@@ -57,6 +61,30 @@ const centerImageUrlDesktop = homeContent.centerImage
   ? urlFor(homeContent.centerImage).width(1010).fit('max').url()
   : null;
 const centerImageUrl = centerImageUrlDesktop;
+
+// Generar URLs de imagen de mesa redonda 1 optimizadas para diferentes tamaños (responsive)
+const mesaRedonda1UrlMobile = homeContent.mesaRedonda1Image 
+  ? urlFor(homeContent.mesaRedonda1Image).width(400).fit('max').url()
+  : null;
+const mesaRedonda1UrlTablet = homeContent.mesaRedonda1Image 
+  ? urlFor(homeContent.mesaRedonda1Image).width(600).fit('max').url()
+  : null;
+const mesaRedonda1UrlDesktop = homeContent.mesaRedonda1Image 
+  ? urlFor(homeContent.mesaRedonda1Image).width(850).fit('max').url()
+  : null;
+const mesaRedonda1Url = mesaRedonda1UrlDesktop;
+
+// Generar URLs de imagen de mesa redonda 2 optimizadas para diferentes tamaños (responsive)
+const mesaRedonda2UrlMobile = homeContent.mesaRedonda2Image 
+  ? urlFor(homeContent.mesaRedonda2Image).width(400).fit('max').url()
+  : null;
+const mesaRedonda2UrlTablet = homeContent.mesaRedonda2Image 
+  ? urlFor(homeContent.mesaRedonda2Image).width(600).fit('max').url()
+  : null;
+const mesaRedonda2UrlDesktop = homeContent.mesaRedonda2Image 
+  ? urlFor(homeContent.mesaRedonda2Image).width(850).fit('max').url()
+  : null;
+const mesaRedonda2Url = mesaRedonda2UrlDesktop;
 ---
 
 <BaseLayout 
@@ -107,11 +135,11 @@ const centerImageUrl = centerImageUrlDesktop;
             </picture>
           </div>
         )}
-      </div>
-      
-      <!-- Botón en la parte inferior -->
+    </div>
+    
+      <!-- Botón y descripción del evento -->
       <div class="w-full pb-1 sm:pb-8 md:pb-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto flex justify-center">
+        <div class="max-w-4xl mx-auto flex flex-col items-center gap-4 sm:gap-6">
           <!-- Botón de inscripción -->
           <a 
             href={homeContent.attendeeFormUrl || '#'}
@@ -120,7 +148,112 @@ const centerImageUrl = centerImageUrlDesktop;
           >
             Inscripción
           </a>
+          
+          <!-- Intro del evento -->
+          {homeContent.eventIntro && (
+            <div class="text-center text-white max-w-2xl mx-auto px-4 mt-8 sm:mt-12 md:mt-16">
+              <p class="text-sm sm:text-base md:text-lg leading-relaxed drop-shadow-lg whitespace-pre-line">
+                {homeContent.eventIntro}
+        </p>
+      </div>
+          )}
+          
+          <!-- Timeline de horario -->
+          {homeContent.schedule && homeContent.schedule.length > 0 && (
+            <div class="w-full max-w-7xl xl:max-w-[90rem] mx-auto mt-6 sm:mt-8 px-4">
+              <h2 class="text-white text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-8 drop-shadow-lg">
+                Horario
+              </h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 xl:gap-8">
+                {homeContent.schedule.map((item) => {
+                  const mesaLink = item.mesaRedondaLink ? `#mesa-redonda-${item.mesaRedondaLink}` : null;
+                  
+                  if (mesaLink) {
+                    return (
+                      <a 
+                        href={mesaLink}
+                        class="bg-white/10 backdrop-blur-sm border border-white/20 p-4 sm:p-6 rounded-lg block transition-all duration-300 hover:bg-white/15 hover:border-white/30 cursor-pointer"
+                      >
+                        {item.time && (
+                          <div class="text-white/80 text-xs sm:text-sm font-semibold mb-2">
+                            {item.time}
+                          </div>
+                        )}
+                        {item.title && (
+                          <h3 class="text-[#FFE900] text-base sm:text-lg font-semibold mb-2 drop-shadow-[0_0_4px_rgba(255,233,0,0.5)]">
+                            {item.title}
+                          </h3>
+                        )}
+                        {item.description && (
+                          <p class="text-white/90 text-sm sm:text-base leading-relaxed whitespace-pre-line">
+                            {item.description}
+                          </p>
+                        )}
+                      </a>
+                    );
+                  }
+                  
+                  return (
+                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 p-4 sm:p-6 rounded-lg">
+                      {item.time && (
+                        <div class="text-white/80 text-xs sm:text-sm font-semibold mb-2">
+                          {item.time}
+                        </div>
+                      )}
+                      {item.title && (
+                        <h3 class="text-[#FFE900] text-base sm:text-lg font-semibold mb-2 drop-shadow-[0_0_4px_rgba(255,233,0,0.5)]">
+                          {item.title}
+                        </h3>
+                      )}
+                      {item.description && (
+                        <p class="text-white/90 text-sm sm:text-base leading-relaxed whitespace-pre-line">
+                          {item.description}
+                        </p>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+          
+          <!-- Imagen de Mesa Redonda 1 -->
+          {mesaRedonda1Url && (
+            <div id="mesa-redonda-1" class="w-full max-w-5xl mx-auto mt-8 sm:mt-12 px-4 scroll-mt-20">
+              <div class="flex items-center justify-center w-full overflow-visible">
+                <picture class="flex justify-center w-full">
+                  <source media="(min-width: 1024px)" srcset={mesaRedonda1UrlDesktop || mesaRedonda1Url} />
+                  <source media="(min-width: 640px)" srcset={mesaRedonda1UrlTablet || mesaRedonda1Url} />
+                  <img
+                    src={mesaRedonda1UrlMobile || mesaRedonda1Url}
+                    alt="Mesa Redonda 1"
+                    class="drop-shadow-2xl w-auto h-auto max-w-[95vw] sm:max-w-[80vw] lg:max-w-[70vw] object-contain mx-auto"
+                  />
+                </picture>
+              </div>
+            </div>
+          )}
+          
+          <!-- Imagen de Mesa Redonda 2 -->
+          {mesaRedonda2Url && (
+            <div id="mesa-redonda-2" class="w-full max-w-5xl mx-auto mt-8 sm:mt-12 px-4 scroll-mt-20">
+              <div class="flex items-center justify-center w-full overflow-visible">
+                <picture class="flex justify-center w-full">
+                  <source media="(min-width: 1024px)" srcset={mesaRedonda2UrlDesktop || mesaRedonda2Url} />
+                  <source media="(min-width: 640px)" srcset={mesaRedonda2UrlTablet || mesaRedonda2Url} />
+                  <img
+                    src={mesaRedonda2UrlMobile || mesaRedonda2Url}
+                    alt="Mesa Redonda 2"
+                    class="drop-shadow-2xl w-auto h-auto max-w-[95vw] sm:max-w-[80vw] lg:max-w-[70vw] object-contain mx-auto"
+                  />
+                </picture>
+              </div>
+            </div>
+          )}
         </div>
+      </div>
+      
+    </div>
       </div>
     </div>
   </div>

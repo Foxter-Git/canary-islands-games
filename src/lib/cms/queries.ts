@@ -2,7 +2,7 @@
 // Queries de GROQ para obtener datos de Sanity
 
 import { sanityClient } from './sanityClient';
-import type { Studio, HomeContent, TaxIncentive } from '../types/content';
+import type { Studio, HomeContent, TaxIncentive, Speaker } from '../types/content';
 
 /**
  * Obtiene el contenido de la página de inicio
@@ -13,6 +13,16 @@ export async function getHomeContent(): Promise<HomeContent> {
     backgroundImage,
     topImage,
     centerImage,
+    eventIntro,
+    schedule[]{
+      _key,
+      time,
+      title,
+      description,
+      mesaRedondaLink
+    },
+    mesaRedonda1Image,
+    mesaRedonda2Image,
     attendeeFormUrl,
     developerFormUrl
   }`;
@@ -89,6 +99,22 @@ export async function getResources() {
     file,
     url,
     category
+  }`;
+  
+  return await sanityClient.fetch(query);
+}
+
+/**
+ * Obtiene todos los ponentes agrupados por mesa redonda
+ */
+export async function getSpeakers(): Promise<Speaker[]> {
+  const query = `*[_type == "speaker"] | order(mesaRedonda asc, order asc){
+    _id,
+    name,
+    photo,
+    description,
+    mesaRedonda,
+    order
   }`;
   
   return await sanityClient.fetch(query);

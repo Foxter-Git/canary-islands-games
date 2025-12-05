@@ -19,6 +19,17 @@ export interface Slug {
 }
 
 /**
+ * Item del timeline de horario
+ */
+export interface ScheduleItem {
+  _key?: string;
+  time?: string;
+  title?: string;
+  description?: string;
+  mesaRedondaLink?: string;
+}
+
+/**
  * Contenido de la página de inicio
  */
 export interface HomeContent {
@@ -26,6 +37,10 @@ export interface HomeContent {
   backgroundImage?: SanityImage;
   topImage?: SanityImage;
   centerImage?: SanityImage;
+  eventIntro?: string;
+  schedule?: ScheduleItem[];
+  mesaRedonda1Image?: SanityImage;
+  mesaRedonda2Image?: SanityImage;
   attendeeFormUrl?: string;
   developerFormUrl?: string;
 }
@@ -71,5 +86,17 @@ export interface Resource {
   file?: SanityReference;
   url?: string;
   category?: string;
+}
+
+/**
+ * Ponente de mesa redonda
+ */
+export interface Speaker {
+  _id: string;
+  name: string;
+  photo?: SanityImage;
+  description?: string;
+  mesaRedonda: string;
+  order?: number;
 }
 
