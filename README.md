@@ -74,3 +74,5 @@ Los cambios se reflejarán automáticamente en el sitio web.
 ---
 
 **Proyecto Foxter sl.**
+
+cambio de imagen mesa1
